@@ -1,3 +1,7 @@
+#references: 
+#https://conda.io/docs/user-guide/tasks/manage-environments.html
+#
+
 # download conda
 allysa@allysa:~$ curl -O https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -5,6 +9,7 @@ allysa@allysa:~$ curl -O https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux
 allysa@allysa:~$ sha256sum Anaconda3-5.0.1-Linux-x86_64.sh
 c813261e9daa4ed96f5e9eb7fb968870fbb6496d0c65ce0c1ea201f94b0dc9ae  Anaconda3-5.0.1-Linux-x86_64.sh
 allysa@allysa:~$ bash Anaconda3-5.0.1-Linux-x86_64.sh
+# let the installer add the conda installation of Python to your PATH environment variable. 
 
 allysa@allysa:~$ conda
 conda
@@ -163,7 +168,30 @@ The following packages will be REMOVED:
 
 Proceed ([y]/n)? y
 
+Uninstalling Anaconda
+If you are no longer using Anaconda and find that you need to uninstall it, you should start with the anaconda-clean module which will remove configuration files for when you uninstall Anaconda.
 
+conda install anaconda-clean
+Type y when prompted to do so.
+
+Once it is installed, you can run the following command. You will be prompted to answer y before deleting each one. If you would prefer not to be prompted, add --yes to the end of your command:
+
+anaconda-clean
+This will also create a backup folder called .anaconda_backup in your home directory:
+
+Output
+Backup directory: /home/sammy/.anaconda_backup/2017-01-25T191831
+You can now remove your entire Anaconda directory by entering the following command:
+
+rm -rf ~/anaconda3
+Finally, you can remove the PATH line from your .bashrc file that Anaconda added. To do so, first open nano:
+
+nano ~/.bashrc
+Then scroll down to the end of the file (if this is a recent install) or type CTRL + W to search for Anaconda. Delete or comment out the following lines:
+
+/home/sammy/.bashrc
+# added by Anaconda3 4.2.0 installer
+export PATH="/home/sammy/anaconda3/bin:$PATH"
 
 
 
