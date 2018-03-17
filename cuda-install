@@ -1,0 +1,92 @@
+allysa@allysa:~$ lsb_release -a #check os
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 16.04.4 LTS
+Release:	16.04
+Codename:	xenial
+
+
+allysa@allysa:~$ cd Downloads/CUDA
+allysa@allysa:~/Downloads/CUDA$ sudo dpkg --install cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb
+[sudo] password for allysa: 
+Selecting previously unselected package cuda-repo-ubuntu1604-8-0-local-ga2.
+(Reading database ... 299154 files and directories currently installed.)
+Preparing to unpack cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64.deb ...
+Unpacking cuda-repo-ubuntu1604-8-0-local-ga2 (8.0.61-1) ...
+Setting up cuda-repo-ubuntu1604-8-0-local-ga2 (8.0.61-1) ...
+OK
+
+allysa@allysa:~/Downloads/CUDA$ sudo apt-get update
+Get:1 file:/var/cuda-repo-8-0-local-ga2  InRelease
+Ign:1 file:/var/cuda-repo-8-0-local-ga2  InRelease
+Get:2 file:/var/cuda-repo-8-0-local-ga2  Release [574 B]
+.
+.
+.
+Get:21 http://ph.archive.ubuntu.com/ubuntu xenial-updates/multiverse amd64 DEP-11 Metadata [5,888 B]
+Get:22 http://ph.archive.ubuntu.com/ubuntu xenial-backports/main amd64 DEP-11 Metadata [3,328 B]
+Get:23 http://ph.archive.ubuntu.com/ubuntu xenial-backports/universe amd64 DEP-11 Metadata [4,696 B]
+Fetched 1,317 kB in 9s (145 kB/s)                                              
+Reading package lists... Done
+
+allysa@allysa:~/Downloads/CUDA$ sudo apt-get install cuda
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+.
+.
+.
+Setting up cuda-drivers (375.26-1) ...
+Setting up cuda-runtime-8-0 (8.0.61-1) ...
+Setting up cuda-demo-suite-8-0 (8.0.61-1) ...
+Setting up cuda-8-0 (8.0.61-1) ...
+Setting up cuda (8.0.61-1) ...
+Processing triggers for libc-bin (2.23-0ubuntu10) ...
+
+
+#install cuda post install
+allysa@allysa:~/Downloads/CUDA$ export PATH=/usr/local/cuda-8.0/bin${PATH:+:${PATH}}
+allysa@allysa:~/Downloads/CUDA$ export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64\
+> ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+
+#install cuda samples
+allysa@allysa:~/Downloads/CUDA$ cd ~
+allysa@allysa:~$ cuda-install-samples-8.0.sh ~
+Copying samples to /home/allysa/NVIDIA_CUDA-8.0_Samples now...
+Finished copying samples.
+allysa@allysa:~$ cd ~/NVIDIA_CUDA-8.0_Samples/5_Simulations/nbody
+allysa@allysa:~/NVIDIA_CUDA-8.0_Samples/5_Simulations/nbody$ make
+/usr/local/cuda-8.0/bin/nvcc -ccbin g++ -I../../common/inc  -m64    -ftz=true -gencode arch=compute_20,code=sm_20 -gencode arch=compute_30,code=sm_30 -gencode arch=compute_35,code=sm_35 -gencode arch=compute_37,code=sm_37 -gencode arch=compute_50,code=sm_50 -gencode arch=compute_52,code=sm_52 -gencode arch=compute_60,code=sm_60 -gencode arch=compute_60,code=compute_60 -o bodysystemcuda.o -c bodysystemcuda.cu
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).
+g++: No such file or directory
+Makefile:266: recipe for target 'bodysystemcuda.o' failed
+make: *** [bodysystemcuda.o] Error 1
+allysa@allysa:~/NVIDIA_CUDA-8.0_Samples/5_Simulations/nbody$ cd ~
+allysa@allysa:~$ cd Downloads/CUDA
+allysa@allysa:~/Downloads/CUDA$ tar xvzf cudnn-8.0-linux-x64-v5.1-ga.tgz
+tar (child): cudnn-8.0-linux-x64-v5.1-ga.tgz: Cannot open: No such file or directory
+tar (child): Error is not recoverable: exiting now
+tar: Child returned status 2
+tar: Error is not recoverable: exiting now
+
+
+#install cudnn
+allysa@allysa:~/Downloads/CUDA$ tar xvzf cudnn-8.0-linux-x64-v5.1.tgz
+cuda/include/cudnn.h
+cuda/lib64/libcudnn.so
+cuda/lib64/libcudnn.so.5
+cuda/lib64/libcudnn.so.5.1.10
+cuda/lib64/libcudnn_static.a
+allysa@allysa:~/Downloads/CUDA$ sudo cp -P cuda/include/cudnn.h /usr/local/cuda/include
+[sudo] password for allysa: 
+allysa@allysa:~/Downloads/CUDA$ sudo cp -P cuda/lib64/libcudnn* /usr/local/cuda/lib64
+allysa@allysa:~/Downloads/CUDA$ sudo chmod a+r /usr/local/cuda/include/cudnn.h 
+allysa@allysa:~/Downloads/CUDA$ sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+allysa@allysa:~/Downloads/CUDA$ gedit ~/.bashrc
+
+
+#install tensorflow-gpu
+allysa@allysa:~/Downloads/CUDA$ pip install tensorflow-gpu
+Collecting tensorflow-gpu
