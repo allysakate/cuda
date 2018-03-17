@@ -1,0 +1,48 @@
+allysa@allysa:~$ dpkg -l | grep -i nvidia
+ii  bbswitch-dkms                               0.8-3ubuntu1                                          amd64        Interface for toggling the power on NVIDIA Optimus video cards
+ii  libcuda1-384                                384.111-0ubuntu0.16.04.1                              amd64        NVIDIA CUDA runtime library
+ii  nvidia-375                                  384.111-0ubuntu0.16.04.1                              amd64        Transitional package for nvidia-384
+ii  nvidia-375-dev                              384.111-0ubuntu0.16.04.1                              amd64        Transitional package for nvidia-384-dev
+ii  nvidia-384                                  384.111-0ubuntu0.16.04.1                              amd64        NVIDIA binary driver - version 384.111
+ii  nvidia-384-dev                              384.111-0ubuntu0.16.04.1                              amd64        NVIDIA binary Xorg driver development files
+ii  nvidia-modprobe                             375.26-0ubuntu1                                       amd64        Load the NVIDIA kernel driver and create device files
+ii  nvidia-opencl-icd-375                       384.111-0ubuntu0.16.04.1                              amd64        Transitional package for nvidia-opencl-icd-384
+ii  nvidia-opencl-icd-384                       384.111-0ubuntu0.16.04.1                              amd64        NVIDIA OpenCL ICD
+ii  nvidia-prime                                0.8.2                                                 amd64        Tools to enable NVIDIA's Prime
+ii  nvidia-settings                             390.25-0ubuntu0~gpu16.04.1                            amd64        Tool for configuring the NVIDIA graphics driver
+
+allysa@allysa:~$ ubuntu-drivers devices
+== /sys/devices/pci0000:00/0000:00:1c.0/0000:01:00.0 ==
+modalias : pci:v000010DEd0000134Dsv000017AAsd000038E2bc03sc02i00
+vendor   : NVIDIA Corporation
+model    : GM108M [GeForce 940MX]
+driver   : nvidia-390 - third-party free recommended
+driver   : nvidia-387 - third-party free
+driver   : nvidia-384 - distro non-free
+driver   : xserver-xorg-video-nouveau - distro free builtin
+
+allysa@allysa:~$ sudo ubuntu-drivers autoinstall
+allysa@allysa:~$ sudo apt-get install nvidia-384-dev (Reboot)
+
+allysa@allysa:~$ nvidia-smi
+Sat Mar 17 16:26:45 2018       
++-----------------------------------------------------------------------------+
+| NVIDIA-SMI 384.111                Driver Version: 384.111                   |
+|-------------------------------+----------------------+----------------------+
+| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+|===============================+======================+======================|
+|   0  GeForce 940MX       Off  | 00000000:01:00.0 Off |                  N/A |
+| N/A   56C    P0    N/A /  N/A |    267MiB /  2002MiB |     14%      Default |
++-------------------------------+----------------------+----------------------+
+                                                                               
++-----------------------------------------------------------------------------+
+| Processes:                                                       GPU Memory |
+|  GPU       PID   Type   Process name                             Usage      |
+|=============================================================================|
+|    0       997      G   /usr/lib/xorg/Xorg                           179MiB |
+|    0      1769      G   compiz                                        46MiB |
+|    0      2261      G   ...-token=4F53AEE5D843EA16CD390BFA90FD16E2    39MiB |
++-----------------------------------------------------------------------------+
+
+
