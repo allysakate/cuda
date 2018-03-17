@@ -1,0 +1,130 @@
+# download conda
+allysa@allysa:~$ curl -O https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+allysa@allysa:~$ sha256sum Anaconda3-5.0.1-Linux-x86_64.sh
+c813261e9daa4ed96f5e9eb7fb968870fbb6496d0c65ce0c1ea201f94b0dc9ae  Anaconda3-5.0.1-Linux-x86_64.sh
+allysa@allysa:~$ bash Anaconda3-5.0.1-Linux-x86_64.sh
+
+allysa@allysa:~$ conda
+conda
+usage: conda [-h] [-V] command ...
+
+conda is a tool for managing and deploying applications, environments and packages.
+
+Options:
+
+positional arguments:
+  command
+    info         Display information about current conda install.
+    help         Displays a list of available conda commands and their help
+                 strings.
+    list         List linked packages in a conda environment.
+    search       Search for packages and display their information. The input
+                 is a Python regular expression. To perform a search with a
+                 search string that starts with a -, separate the search from
+                 the options with --, like 'conda search -- -h'. A * in the
+                 results means that package is installed in the current
+                 environment. A . means that package is not installed but is
+                 cached in the pkgs directory.
+    create       Create a new conda environment from a list of specified
+                 packages.
+    install      Installs a list of packages into a specified conda
+                 environment.
+    update       Updates conda packages to the latest compatible version. This
+                 command accepts a list of package names and updates them to
+                 the latest versions that are compatible with all other
+                 packages in the environment. Conda attempts to install the
+                 newest versions of the requested packages. To accomplish
+                 this, it may update some packages that are already installed,
+                 or install additional packages. To prevent existing packages
+                 from updating, use the --no-update-deps option. This may
+                 force conda to install older versions of the requested
+                 packages, and it does not prevent additional dependency
+                 packages from being installed. If you wish to skip dependency
+                 checking altogether, use the '--force' option. This may
+                 result in an environment with incompatible packages, so this
+                 option must be used with great caution.
+    upgrade      Alias for conda update. See conda update --help.
+    remove       Remove a list of packages from a specified conda environment.
+    uninstall    Alias for conda remove. See conda remove --help.
+    config       Modify configuration values in .condarc. This is modeled
+                 after the git config command. Writes to the user .condarc
+                 file (/home/allysa/.condarc) by default.
+    clean        Remove unused packages and caches.
+    package      Low-level conda package utility. (EXPERIMENTAL)
+
+optional arguments:
+  -h, --help     Show this help message and exit.
+  -V, --version  Show the conda version number and exit.
+
+other commands, such as "conda build", are available when additional conda
+packages (e.g. conda-build) are installed
+
+allysa@allysa:~$ conda list
+# packages in environment at /home/allysa/anaconda3:
+#
+_ipyw_jlab_nb_ext_conf    0.1.0            py36he11e457_0  
+alabaster                 0.7.10           py36h306e16b_0  
+anaconda                  5.0.1            py36hd30a520_1  
+...
+
+
+allysa@allysa:~$ conda create --name term_1 python=3
+Fetching package metadata ...........
+Solving package specifications: .
+
+Package plan for installation in environment /home/allysa/anaconda3/envs/term_1:
+
+The following NEW packages will be INSTALLED:
+
+    ca-certificates: 2017.08.26-h1d4fec5_0
+    certifi:         2018.1.18-py36_0     
+    libedit:         3.1-heed3624_0       
+    libffi:          3.2.1-hd88cf55_4     
+    libgcc-ng:       7.2.0-hdf63c60_3     
+    libstdcxx-ng:    7.2.0-hdf63c60_3     
+    ncurses:         6.0-h9df7e31_2       
+    openssl:         1.0.2n-hb7f436b_0    
+    pip:             9.0.1-py36_5         
+    python:          3.6.4-hc3d631a_3     
+    readline:        7.0-ha6073c6_4       
+    setuptools:      38.5.1-py36_0        
+    sqlite:          3.22.0-h1bed415_0    
+    tk:              8.6.7-hc745277_3     
+    wheel:           0.30.0-py36hfd4bba0_1
+    xz:              5.2.3-h55aa19d_2     
+    zlib:            1.2.11-ha838bed_2    
+
+Proceed ([y]/n)? y
+
+libgcc-ng-7.2. 100% |################################| Time: 0:01:25  74.83 kB/s
+libstdcxx-ng-7 100% |################################| Time: 0:00:20 127.94 kB/s
+libffi-3.2.1-h 100% |################################| Time: 0:00:00 131.13 kB/s
+ncurses-6.0-h9 100% |################################| Time: 0:00:16  56.22 kB/s
+openssl-1.0.2n 100% |################################| Time: 0:00:43  82.81 kB/s
+tk-8.6.7-hc745 100% |################################| Time: 0:00:38  85.67 kB/s
+xz-5.2.3-h55aa 100% |################################| Time: 0:00:05  68.58 kB/s
+zlib-1.2.11-ha 100% |################################| Time: 0:00:00 112.33 kB/s
+readline-7.0-h 100% |################################| Time: 0:00:16  70.33 kB/s
+sqlite-3.22.0- 100% |################################| Time: 0:00:13 119.52 kB/s
+python-3.6.4-h 100% |################################| Time: 0:05:23  94.27 kB/s
+certifi-2018.1 100% |################################| Time: 0:00:01  78.89 kB/s
+setuptools-38. 100% |################################| Time: 0:00:05 104.92 kB/s
+wheel-0.30.0-p 100% |################################| Time: 0:00:00 125.58 kB/s
+pip-9.0.1-py36 100% |################################| Time: 0:00:28  79.56 kB/s
+#
+# To activate this environment, use:
+# > source activate term_1
+#
+# To deactivate an active environment, use:
+# > source deactivate
+#
+
+allysa@allysa:~$ source activate term_1
+(term_1) allysa@allysa:~$ python --version
+Python 3.6.4 :: Anaconda, Inc.
+
+
+(term_1) allysa@allysa:~$ source deactivate
+
